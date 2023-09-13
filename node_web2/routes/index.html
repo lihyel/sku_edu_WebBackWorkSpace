@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>상품목록</title>
+    <link rel="stylesheet" href="css/gallery-result.css">
+</head>
+<body>
+  <div id="wraphome" > 
+    <img src="image/shopping_logo.png"  width="70"/>
+    <div id="wrapper">
+        <div class="card" > 
+          <figure>
+            <img src="\image\prod1.webp">
+          </figure>
+          <p>2023년 첫수확 겉과 속이 다른 반전매력 신비복숭아 1kg~
+            원산지 : 국내산 (경상북도 경산시)</p>
+          <button class="price_talkdeal">톡딜가 11,900원</button>
+          <button class="addCartBtn"  id="1" name="복숭아"  >선택</button>
+        </div>
+        <div class="card">
+          <figure>
+            <img src="\image\prod2.webp">
+          </figure>
+          <p>달콤한 제주 하우스감귤 1.5kg 2.5kg 외 황금향
+            원산지 : 국내산 (제주특별자치도) </p>
+          <button class="price_talkdeal">톡딜가 21,900원</button>
+          <button class="addCartBtn"  id="2" name="명란"    > 선택 </button>
+        </div>
+    </div>
+    <div id="cartlist" >
+    </div>
+  </div>
+</body>
+<script> 
+    btns =  document.querySelectorAll(".addCartBtn") ;
+ 
+    btns.forEach(btn => {
+      btn.onclick = function cart(event){
+         let id = event.srcElement.id; 
+         let name = event.srcElement.name;  
+         fetch("addCart",{
+            method: "POST" ,
+            headers : { "Content-Type":"application/json"} ,
+            body :JSON.stringify( { id : id, name : name  } ) 
+         }) 
+        .then(response => response.json())  
+        .then(json => {
+            let output = '';  
+            json.forEach(cart => {
+              output += `
+                <ul>
+                  <li>상품번호: ${cart.id}</li>
+                  <li>상품명 : ${cart.name}</li>  
+                </ul>
+                <hr>
+                `;
+               })
+              document.querySelector("#cartlist").innerHTML=output;        
+          })
+      }
+    }); 
+</script>
+</html>
