@@ -57,6 +57,11 @@ app.delete('/boards', (req, res) => {  //delete     /boards?board_no=1
     res.json( '[{   }]' ) ;   
 }); 
  
-app.listen(app.get('port'), "database-1.chx35kozl0kv.ap-northeast-2.rds.amazonaws.com", () => { 
+
+// app.listen(app.get('port'), "ec2 endpoint public dns" () => { 
+//     console.log(app.get('port'), '번 포트에서 대기 중');
+// });
+
+app.listen(app.get('port'),  () => { 
     console.log(app.get('port'), '번 포트에서 대기 중');
 });
