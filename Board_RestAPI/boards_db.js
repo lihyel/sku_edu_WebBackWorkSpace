@@ -24,7 +24,7 @@ app.get('/boards', (req, res) => {      //GET       /boards?board_no=1
            (error, rows, fields) => {
             if (error) throw error;   
             console.log( rows); 
-            res.json( rows[0] );
+            res.json( rows[0] ); 
         });     
          
     } else {     // board_no 값이 없으면 전체 목록 Read
@@ -33,7 +33,7 @@ app.get('/boards', (req, res) => {      //GET       /boards?board_no=1
             if (error) throw error;   
             console.log( rows); 
             res.json(  rows   );
-     }); 
+     });   
      // res.sendFile(path.join(__dirname,"db/boards.json"))   // path
     }
 });  
